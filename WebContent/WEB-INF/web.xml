@@ -13,16 +13,29 @@
 		
 	</servlet>
 	
+	
+	<servlet>
+		<servlet-name>Simple</servlet-name>
+		<servlet-class>Servlet.SimpleServlet</servlet-class>
+		
+	</servlet>
+	
+	
+	
 	<servlet-mapping>
 		<servlet-name>Bonjour</servlet-name>
 		<url-pattern>/HelloWorld</url-pattern>
 	</servlet-mapping>
 	
-
 	
 	<servlet-mapping>
 		<servlet-name>Addition</servlet-name>
 		<url-pattern>/Addition</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SimpleServlet</servlet-name>
+		<url-pattern>/SimpleServlet</url-pattern>
 	</servlet-mapping>
 
 
