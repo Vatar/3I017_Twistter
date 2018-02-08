@@ -25,7 +25,7 @@ public class CreateUser extends HttpServlet {
  * This method will handle all GET request.
  */
  protected void doGet(HttpServletRequest request,
- HttpServletResponse response) throws ServletException, IOException {
+ HttpServletResponse res) throws ServletException, IOException {
 	 
 	try{
 
@@ -37,13 +37,13 @@ public class CreateUser extends HttpServlet {
 		JSONObject json=service.user.CreateUser.createUser(login, pwd, nom, prenom);
 		
 		
-		response.setContentType( " text / plain " );
-		PrintWriter out = response.getWriter ();
+		res.setContentType( " text / plain " );
+		PrintWriter out = res.getWriter ();
 		out.println(json.toString());
 		}
-		catch(Exception e){
-			response.setContentType( " text / plain " );
-			PrintWriter out = response.getWriter ();
+		catch(Exception e){ 
+			res.setContentType( " text / plain " );
+			PrintWriter out = res.getWriter ();
 			out.println("Exception Error \n");
 		}
 	
