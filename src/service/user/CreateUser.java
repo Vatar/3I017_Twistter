@@ -16,13 +16,14 @@ public class CreateUser {
 			return ErrorJSON.serviceRefused("null parameters", 100);
 		}
 		
-		if(userExists(login)){
+		if(tools.UserTools.userExists(login)){
 			return ErrorJSON.serviceRefused("User id already exists", 101);
 		}
 		
-		addUser(login,pwd,nom,prenom);
-		
-		return ErrorJSON.serviceAccepted();
+		if(tools.UserTools.createUser(login,pwd,nom,prenom)){
+			return ErrorJSON.serviceAccepted();
+		}
+		return ErrorJSON.serviceRefused("Creating User Error", 1000);
 	}
 	
 }

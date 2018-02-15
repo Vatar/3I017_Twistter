@@ -1,7 +1,6 @@
 package test;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -9,12 +8,12 @@ public class SQLTest {
 
 	public static void main(String[] args) {
 		try {
-			Connection c =bd.ConnectionTools.getMySQLConnection();
+			Connection c =tools.ConnectionTools.getMySQLConnection();
 			Statement st=c.createStatement();
 			
 			String prequery="CREATE TABLE user(id INTEGER PRIMARY KEY AUTO_INCREMENT,"
 					+ "login VARCHAR(255) UNIQUE,"
-					+ "pwd BLOB,"
+					+ "pwd BINARY(64),"
 					+ "nom VARCHAR(255),"
 					+ "prenom VARCHAR(255))";
 		/*	String query="CREATE TABLE Session (id INTEGER PRIMARY KEY AUTO_INCREMENT,"

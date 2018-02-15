@@ -1,10 +1,10 @@
-package bd;
+package tools;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import tools.Database;
+import bd.DBStatic;
 
 public class ConnectionTools {
 

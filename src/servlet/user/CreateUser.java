@@ -14,8 +14,10 @@ import org.json.JSONObject;
  * Servlet implementation class CreateUser
  */
 public class CreateUser extends HttpServlet {
- 
- /**
+	
+	private static final long serialVersionUID = 1L;
+
+/**
  * Default constructor.
  */
  public CreateUser() {

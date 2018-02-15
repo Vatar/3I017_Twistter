@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class HelloWorld extends HttpServlet {
  
- /**
+	private static final long serialVersionUID = 1L;
+
+/**
  * Default constructor.
  */
  public HelloWorld() {

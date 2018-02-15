@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class SimpleServlet extends HttpServlet {
 
+
+	private static final long serialVersionUID = 1L;
 	private int counter=0;
 	private String mutex="";
 	

@@ -9,18 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-public class Login extends HttpServlet{
+public class Logout extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	public Login(){}
+	public Logout(){}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{
-		String login=req.getParameter("login");
-		String pwd=req.getParameter("pwd");
+		String key=req.getParameter("key");
 		
 		try{
-			JSONObject reponse=service.user.Login.login(login, pwd);
+			JSONObject reponse=service.user.Logout.logout(key);
 			
 			PrintWriter out = res.getWriter();
 			res.setContentType("text/plain");
@@ -35,4 +34,3 @@ public class Login extends HttpServlet{
 	}
 	
 }
- 
