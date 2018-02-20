@@ -19,8 +19,40 @@
 		<servlet-class>Servlet.SimpleServlet</servlet-class>
 		
 	</servlet>
+
+	<servlet>
+		<servlet-name>AddFriend</servlet-name>
+		<servlet-class>Servlet.Friend.AddFriend</servlet-class>
+		
+	</servlet>
 	
+	<servlet>
+		<servlet-name>RemoveFriend</servlet-name>
+		<servlet-class>Servlet.Friend.RemoveFriend</servlet-class>
+		
+	</servlet>
 	
+	<servlet>
+		<servlet-name>CreateUser</servlet-name>
+		<servlet-class>Servlet.User.CreateUser</servlet-class>
+		
+	</servlet>
+		
+
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>Servlet.User.Login</servlet-class>
+		
+	</servlet>
+	
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>Servlet.Logout</servlet-class>
+		
+	</servlet>
+	
+
+
 	
 	<servlet-mapping>
 		<servlet-name>Bonjour</servlet-name>
@@ -37,6 +69,41 @@
 		<servlet-name>SimpleServlet</servlet-name>
 		<url-pattern>/SimpleServlet</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet-mapping>
+		<servlet-name>AddFriend</servlet-name>
+		<url-pattern>/AddFriend</url-pattern>
+		
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>RemoveFriend</servlet-name>
+		<url-pattern>/RemoveFriend</url-pattern>
+		
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>CreateUser</servlet-name>
+		<url-pattern>/CreateUser</url-pattern>
+		
+	</servlet-mapping>
+		
+
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
+		
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/Logout</url-pattern>
+		
+	</servlet-mapping>
+	
+	
+	
 
 
 </web-app>

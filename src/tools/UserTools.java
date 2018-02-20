@@ -73,6 +73,21 @@ public class UserTools {
 		return -1;
 	}
 	
+	public static int getIDUserByKey(String key){
+		try(Connection c = tools.ConnectionTools.getMySQLConnection()) {
+			Statement st=c.createStatement();
+			String query="SELECT id_user FROM session WHERE skey=\""+key +"\"  ";
+			ResultSet rs=st.executeQuery(query);
+			if(rs.next()){
+				return rs.getInt("id_user");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	
 	public static String insertSession(int id_user,boolean root){
 		String newkey=null;
 		if(root=false){

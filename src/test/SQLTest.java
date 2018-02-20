@@ -16,18 +16,20 @@ public class SQLTest {
 					+ "pwd BINARY(64),"
 					+ "nom VARCHAR(255),"
 					+ "prenom VARCHAR(255))";
-		/*	String query="CREATE TABLE Session (id INTEGER PRIMARY KEY AUTO_INCREMENT,"
+			String query="CREATE TABLE session (id INTEGER PRIMARY KEY AUTO_INCREMENT,"
 					+ "skey VARCHAR(32) UNIQUE,"
 					+ "id_user INTEGER,"
 					+ "sdate TIMESTAMP,"
 					+ "root boolean,"
 					+ "CONSTRAINT user_constraint FOREIGN KEY (id_user) REFERENCES user(id))";
-			*/
+			
+			String queryq="CREATE TABLE friend(id INTEGER PRIMARY KEY AUTO_INCREMENT, id_user INTEGER, id_friend INTEGER)";
+			
 			String query2="INSERT INTO user (login,pwd,nom,prenom) VALUES(\"Alice\",\"BOB\",\"Aliot\",\"Alice\" )";
 			String query3="INSERT INTO user (login,pwd,nom,prenom) VALUES(\"Bob\",\"ALICE\",\"Bliot\",\"Bob\" )";
 
 			st.executeUpdate(prequery);
-			//st.executeUpdate(query);
+			st.executeUpdate(query);
 			st.executeUpdate(query2);
 			st.executeUpdate(query3);
 			/*String delet="DROP TABLE ?";
