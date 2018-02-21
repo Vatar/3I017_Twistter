@@ -1,76 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app id="WebApp_ID" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-	<servlet>
-		<servlet-name>Bonjour</servlet-name>
-		<servlet-class>Servlet.HelloWorld</servlet-class>
-		
-	</servlet>
-
-	<servlet>
-		<servlet-name>Addition</servlet-name>
-		<servlet-class>Servlet.Addition</servlet-class>
-		
-	</servlet>
-	
-	
-	<servlet>
-		<servlet-name>Simple</servlet-name>
-		<servlet-class>Servlet.SimpleServlet</servlet-class>
-		
-	</servlet>
 
 	<servlet>
 		<servlet-name>AddFriend</servlet-name>
-		<servlet-class>Servlet.Friend.AddFriend</servlet-class>
+		<servlet-class>servlet.friend.AddFriend</servlet-class>
 		
 	</servlet>
 	
 	<servlet>
 		<servlet-name>RemoveFriend</servlet-name>
-		<servlet-class>Servlet.Friend.RemoveFriend</servlet-class>
+		<servlet-class>servlet.friend.RemoveFriend</servlet-class>
 		
 	</servlet>
 	
+	
 	<servlet>
 		<servlet-name>CreateUser</servlet-name>
-		<servlet-class>Servlet.User.CreateUser</servlet-class>
+		<servlet-class>servlet.user.CreateUser</servlet-class>
 		
 	</servlet>
 		
 
 	<servlet>
 		<servlet-name>Login</servlet-name>
-		<servlet-class>Servlet.User.Login</servlet-class>
+		<servlet-class>servlet.user.Login</servlet-class>
 		
 	</servlet>
 	
 	<servlet>
 		<servlet-name>Logout</servlet-name>
-		<servlet-class>Servlet.Logout</servlet-class>
+		<servlet-class>servlet.Logout</servlet-class>
 		
 	</servlet>
 	
 
 
-	
-	<servlet-mapping>
-		<servlet-name>Bonjour</servlet-name>
-		<url-pattern>/HelloWorld</url-pattern>
-	</servlet-mapping>
-	
-	
-	<servlet-mapping>
-		<servlet-name>Addition</servlet-name>
-		<url-pattern>/Addition</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>SimpleServlet</servlet-name>
-		<url-pattern>/SimpleServlet</url-pattern>
-	</servlet-mapping>
-	
-	
 	<servlet-mapping>
 		<servlet-name>AddFriend</servlet-name>
 		<url-pattern>/AddFriend</url-pattern>
@@ -82,6 +47,8 @@
 		<url-pattern>/RemoveFriend</url-pattern>
 		
 	</servlet-mapping>
+
+
 	
 	<servlet-mapping>
 		<servlet-name>CreateUser</servlet-name>
@@ -101,7 +68,7 @@
 		<url-pattern>/Logout</url-pattern>
 		
 	</servlet-mapping>
-	
+
 	
 	
 

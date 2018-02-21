@@ -13,7 +13,7 @@ public class AddFriend extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
-	public AddFriend(){}
+	public AddFriend(){super();}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{
 		String key=req.getParameter("key");

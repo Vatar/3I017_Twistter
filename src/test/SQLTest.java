@@ -13,7 +13,7 @@ public class SQLTest {
 			
 			String prequery="CREATE TABLE user(id INTEGER PRIMARY KEY AUTO_INCREMENT,"
 					+ "login VARCHAR(255) UNIQUE,"
-					+ "pwd BINARY(64),"
+					+ "pwd BLOB,"
 					+ "nom VARCHAR(255),"
 					+ "prenom VARCHAR(255))";
 			String query="CREATE TABLE session (id INTEGER PRIMARY KEY AUTO_INCREMENT,"
