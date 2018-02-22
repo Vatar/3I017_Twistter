@@ -7,5 +7,7 @@ public class DBStatic {
 	public static String mysql_db="33twistter";
 	public static String mysql_username="root";
 	public static String mysql_password="root";
+	public static String mongo_url="localhost";
+	public static String mongo_db="atack_daniel";
 }
 
