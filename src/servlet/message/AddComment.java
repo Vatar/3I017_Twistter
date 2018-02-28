@@ -1,4 +1,4 @@
-package servlet.friend;
+package servlet.message;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-public class RemoveFriend extends HttpServlet {
+public class AddComment extends HttpServlet{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3705347767692058400L;
+	private static final long serialVersionUID = 2318817593734125082L;
 
-	public RemoveFriend(){}
+	public AddComment(){}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{
 		String key=req.getParameter("key");
-		String id_friend=req.getParameter("id_friend");
+		String text=req.getParameter("text");
 		
 		try{
-			JSONObject reponse=service.friend.RemoveFriend.removeFriend(key, Integer.parseInt(id_friend));
+			JSONObject reponse=service.message.AddComment.addComment(key, text);
 			
 			PrintWriter out = res.getWriter();
 			res.setContentType("text/plain");

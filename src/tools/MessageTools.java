@@ -24,7 +24,7 @@ public class MessageTools {
 	}
 	
 	
-	public static JSONArray getMessageByUser(String userId) throws UnknownHostException, JSONException{
+	public static JSONArray getMessageByUser(int userId) throws UnknownHostException, JSONException{
 	
 		DBCollection message=Database.getMongoCollection("message");
 		BasicDBObject query=new BasicDBObject("user_id",userId);
@@ -58,5 +58,27 @@ public class MessageTools {
 		
 	}
 	
+	
+	public static JSONArray getMessageFriend(int userId) throws UnknownHostException, JSONException{
+		int [] friendsid = FriendTools.getFriends(userId);
+		
+		return getMessageByUsers(friendsid);
+		
+	}
+
+
+	public static JSONArray getAllMessage() throws UnknownHostException, JSONException {
+		DBCollection message=Database.getMongoCollection("message");
+		DBCursor msg=message.find();
+		JSONArray userMessage=new JSONArray();
+		while(msg.hasNext()){
+			JSONObject json=new JSONObject();
+			DBObject document=msg.next();
+			json.put("content", document.get("content"));
+			json.put("id", document.get("id"));
+			userMessage.put(json);
+		}
+		return userMessage;
+	}
 	
 }

@@ -13,7 +13,6 @@ import bd.DBStatic;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
-import com.mongodb.MongoClient;
 
 public class Database {
 
@@ -33,10 +32,15 @@ public class Database {
 	}
 	
 	public static DBCollection getMongoCollection(String nom_collection) throws UnknownHostException{
-		MongoClient m;
+		/*MongoClient m;
 	
 		m = new MongoClient(DBStatic.mongo_url);
-		DB db=m.getDB(DBStatic.mongo_url);
+		DB db=m.getDB(DBStatic.mongo_db);
+		return db.getCollection(nom_collection);
+		*/
+		
+		Mongo m=new Mongo(DBStatic.mongo_url);
+		DB db=m.getDB(DBStatic.mongo_db);
 		return db.getCollection(nom_collection);
 	}
 	

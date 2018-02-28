@@ -95,14 +95,11 @@ public class UserTools {
 	
 	
 	public static String insertSession(int id_user,boolean root){
-		String newkey=null;
-		if(root=false){
-			newkey=UUID.randomUUID().toString();
-		}
+		String newkey=UUID.randomUUID().toString().replace('-',' ');
 		try {
 			Connection c=tools.ConnectionTools.getMySQLConnection();
 			Statement st=c.createStatement();
-			String query="INSERT INTO session(skey,id_user,sdate,root) VALUES( \""+newkey+"\",\""+id_user+"\",NOW(),\""+root+"\")";
+			String query="INSERT INTO session(skey,id_user,sdate,root) VALUES( \""+newkey+"\",\""+id_user+"\",NOW(),"+root+")";
 			int rs=st.executeUpdate(query);
 			if(rs>0){
 				return newkey;
@@ -145,6 +142,53 @@ public class UserTools {
 		}
 	
 		return false;
+	}
+	
+	public static boolean isRoot(String key){
+		try{
+			Connection c=tools.ConnectionTools.getMySQLConnection();
+			Statement st=c.createStatement();
+			String query="SELECT root FROM session WHERE skey = \"" +key+ "\"";
+			ResultSet rs=st.executeQuery(query);
+			if(rs.next()){
+				return rs.getBoolean("root");
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public static boolean isKeyValid(String key){
+		
+		try{
+			if(isRoot(key)==true){
+				return true;
+			}
+			Connection c=tools.ConnectionTools.getMySQLConnection();
+			Statement st=c.createStatement();
+			String query="SELECT * FROM session WHERE skey = \"" +key+ "\" AND sdate BETWEEN NOW() - INTERVAL 30 MINUTE AND NOW() ";
+			ResultSet rs=st.executeQuery(query);
+			if(rs.next()){
+				
+				Statement st1=c.createStatement();
+				String updatekey="UPDATE session SET sdate=NOW() WHERE skey = \""+key+"\" ";
+				st1.executeUpdate(updatekey);
+				return true;
+				
+			}
+			
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+			
+		
+		removeConnection(key);
+		
+		return false;
+		
 	}
 	
 }

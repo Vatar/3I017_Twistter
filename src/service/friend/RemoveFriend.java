@@ -14,7 +14,7 @@ public static JSONObject removeFriend(String key, int id_friend) throws JSONExce
 			return ErrorJSON.serviceRefused("null parameters", 100);
 		}
 		
-		if(!tools.UserTools.isConnected(key)){
+		if(!tools.UserTools.isConnected(key)|| !tools.UserTools.isKeyValid(key) ){
 			return ErrorJSON.serviceRefused("Requesting user isn't connected", 101);
 		}
 		
