@@ -1,0 +1,26 @@
+
+
+#top {
+	height:50px;
+	display:inline-block;
+	width:100%;	
+	background-color:#ffc9ed;
+	
+}
+
+#top .logo{
+	display:inline-block;
+}
+
+#left {
+	display:inline-block;
+	width:20%;
+	height:100px;
+	vertical_align:top;
+}
+
+#main {
+	display:inline-block;
+	width:70%;
+	background-color:#ffc9ed;
+}
