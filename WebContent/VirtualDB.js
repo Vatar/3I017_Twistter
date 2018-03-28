@@ -22,3 +22,35 @@ function init(){
 	setVirtualDB();
 	
 }
+
+function getFromLocalDB(from,minId,maxId,nbMax){
+	var tab=[];
+	var nb=0;
+	var f=undefined;
+	if(from>0){
+		f=follows[from];
+		if(undefined==f){
+			f=new Set();
+		}
+	}
+
+	for(var i=0;i<localdb.length;i++){
+		if(nbMax>=0 && nb>=nbMax){
+			break;
+		}
+		var n=localdb[i];
+		if(n==undefined){
+			continue;
+		}
+		if((maxId<0 || n.id<maxId) && n.id>minId ){
+			if(f==undefined || n.auteur.id == f.nom){
+				if(f.has(n.auteur.id)){
+					tab.push(n);
+					nb++;
+				}
+			}
+
+		}
+	}
+	return tab;
+}

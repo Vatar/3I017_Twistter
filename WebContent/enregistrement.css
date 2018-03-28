@@ -1,0 +1,48 @@
+
+
+#enregistrement_main {
+	background-image:linear-gradient(to left,#ffc9ed,white);
+}
+
+#enregistrement_main .title {
+	text-shadow:5px 5px 5px pink;
+	
+}
+
+
+#enregistrement_main .ids {
+	color:black;	
+	text-shadow:1px 1px 0px pink;
+	margin-left:20px;
+	margin-top:5px;
+	position:relative;
+	width:20%;
+}
+
+#enregistrement_main .buttons {
+	display:inline-block;
+	margin-left:20px;
+	position:relative;
+	font-size:30px;
+}
+
+.buttons input{
+	width:20%;
+	min-width:140px;
+	color:black;
+	text-shadow:1px 1px 0px pink;
+	background-color:white;
+	border:inset;
+	border-color:pink;
+}
+#enregistrement_main .links {
+	border:outset;
+	border-color:pink;
+	color:black;
+	text-shadow:1px 1px 0px pink;
+	display:inline-block;
+	margin-top:4%;
+	margin-left:10%;
+	position:relative;
+	
+}

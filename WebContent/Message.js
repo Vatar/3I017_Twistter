@@ -68,10 +68,33 @@ M1=function(key,val){
 	return new Message(val.id,val.auteur,val.texte,val.date);
 }
 
+function completeMessages(){
+	if(!noConnection){
+		
+	}
+	else{
+		var tab=getFromLocalDB(env.fromId,1,1);
+		completeMessagesReponse(JSON.stringify(tab));
+	}
+}
+
 
 function completeMessagesReponse(rep){
 	var tab=JSON.parse(rep,M1);
 	var s="";
+	for(var i=0;i<tab.length;i++){
+		var n=tab[i];
+		alert(n.getHTML());
+		s+=n.getHTML();
+		env.msgs[n.id]=n;
+		if(n.id>env.maxId){
+			env.maxId=n.Id;
+		}
+		if(env.minId<0 || (n.id < env.minId)){
+			env.minId=n.Id; 
+		}
+	$("#message".append(html(s)));
+	}
 	
 }
 
