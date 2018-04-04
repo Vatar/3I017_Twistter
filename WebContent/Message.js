@@ -70,7 +70,14 @@ M1=function(key,val){
 
 function completeMessages(){
 	if(!noConnection){
-		
+		$.ajax({
+			type="POST",
+			url="listMsg",
+			data="key="+env.key+"&query="+env.query+"&from="+env.fromId+"&id_max="+env.minId,
+			datatype="text",
+			success=function(rep){completeMessagesReponse(rep);},
+			error=function(rep){func_error(rep.error);}
+		})
 	}
 	else{
 		var tab=getFromLocalDB(env.fromId,1,1);
@@ -98,9 +105,30 @@ function completeMessagesReponse(rep){
 	
 }
 
+function refreshMessages(){
+	if(!noConnection){
+		$.ajax({
+			type="POST",
+			url="listMsg",
+			data="key"+env.key+"&id_max=-1&id_min="+env.maxId+"nb=-1",
+			datatype="text",
+			success=function(rep){refreshMessagesReponse(rep);},
+			error=function(rep){func_error(rep.error)}
+		})
+	}
+}
+
+function refreshMessagesReponse(rep){
+	var tab=JSON.parse(rep,M1);
+	for(var i=tab.length-1;i>=0;i++){
+		var n=tab[i];
+		$("#messages").prepend(n.getHTML());
+		env.msgs[n.id]=n;
+		//a finir
+	}
 
 
-
+}
 
 
 

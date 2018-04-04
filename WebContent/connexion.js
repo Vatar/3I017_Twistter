@@ -22,8 +22,52 @@ function verif_formulaire_connexion(login,pwd){
 }
 
 function connecte(login,pwd){
+    console.log("connecte"+login+";"+pwd);
+    if(!noConnection){
+        $.ajax({
+            type:"POST",
+            url:"login",
+            data:"login="+login+"&pwd="+pwd,
+            datatype:"text",
+            success:function(rep){responseConnexion(rep)},
+            error:function(rep){func_error(rep.error)}
+        })
+    }
+    else{
+        responseConnexion(JSON.stringify( {"key":key,"id":1,"login":toto,
+    "follows":[2] } ));
+        
+    }
+}
+
+
+function responseConnexion(rep){
+    resp=JSON.parse(rep);
+    if(rep.error==undefined){
+        env.key=resp.key;
+        env.id=resp.id;
+        env.login=resp.login;
+        env.follows=new Set();
+        for(var i=0;i<resp.follows.length;i++){
+            env.follows[resp.follows[i]];
+        }
+    }
+
+    if(!noConnection){
+        env.follows[rep.id]=new Set();
+        for(var i=0;i<resp.follows[rep.id].length;i++){
+            env.follows[rep.id]=resp.follows[rep.id][i];
+        }
 
     
+    makeMainPanel(-1,-1,-1);
+
+    }
+
+    else{
+        func_error(rep.error);
+    }
+
 }
 
 
@@ -38,3 +82,4 @@ function func_error(msg){
     }
     $("#err_msg").css("color.red");
 }
+
