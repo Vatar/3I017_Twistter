@@ -1,7 +1,8 @@
-function connexion(formulaire){
-    var login = formulaire.login.value;
-    var password = formulaire.password.value;
+function fconnexion(formulaire){
 
+    var login = formulaire.login.value;
+    var password = formulaire.pwd.value;
+   
     if(verif_formulaire_connexion(login,password)){
         connecte(login,password);
     }
@@ -13,7 +14,7 @@ function verif_formulaire_connexion(login,pwd){
         func_error("login erroné");
         return false;
     }
-    if(pwd.length==0 || password.length>19){
+    if(pwd.length==0 || pwd.length>19){
         func_error("mot de passe erroné");
         return false;
     }
@@ -34,7 +35,7 @@ function connecte(login,pwd){
         })
     }
     else{
-        responseConnexion(JSON.stringify( {"key":key,"id":1,"login":toto,
+        responseConnexion(JSON.stringify( {"key":1,"id":1,"login":"toto",
     "follows":[2] } ));
         
     }

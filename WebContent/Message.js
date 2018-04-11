@@ -71,12 +71,12 @@ M1=function(key,val){
 function completeMessages(){
 	if(!noConnection){
 		$.ajax({
-			type="POST",
-			url="listMsg",
-			data="key="+env.key+"&query="+env.query+"&from="+env.fromId+"&id_max="+env.minId,
-			datatype="text",
-			success=function(rep){completeMessagesReponse(rep);},
-			error=function(rep){func_error(rep.error);}
+			type:"POST",
+			url:"listMsg",
+			data:"key="+env.key+"&query="+env.query+"&from="+env.fromId+"&id_max="+env.minId,
+			datatype:"text",
+			success:function(rep){completeMessagesReponse(rep);},
+			error:function(rep){func_error(rep.error);}
 		})
 	}
 	else{
@@ -93,11 +93,11 @@ function completeMessagesReponse(rep){
 		var n=tab[i];
 		alert(n.getHTML());
 		s+=n.getHTML();
-		env.msgs[n.id]=n;
-		if(n.id>env.maxId){
+		env.msgs[n.Id]=n;
+		if(n.Id>env.maxId){
 			env.maxId=n.Id;
 		}
-		if(env.minId<0 || (n.id < env.minId)){
+		if(env.minId<0 || (n.Id < env.minId)){
 			env.minId=n.Id; 
 		}
 	$("#message".append(html(s)));
@@ -108,12 +108,12 @@ function completeMessagesReponse(rep){
 function refreshMessages(){
 	if(!noConnection){
 		$.ajax({
-			type="POST",
-			url="listMsg",
-			data="key"+env.key+"&id_max=-1&id_min="+env.maxId+"nb=-1",
-			datatype="text",
-			success=function(rep){refreshMessagesReponse(rep);},
-			error=function(rep){func_error(rep.error)}
+			type:"POST",
+			url:"listMsg",
+			data:"key"+env.key+"&id_max=-1&id_min="+env.maxId+"nb=-1",
+			datatype:"text",
+			success:function(rep){refreshMessagesReponse(rep);},
+			error:function(rep){func_error(rep.error)}
 		})
 	}
 }
@@ -123,10 +123,22 @@ function refreshMessagesReponse(rep){
 	for(var i=tab.length-1;i>=0;i++){
 		var n=tab[i];
 		$("#messages").prepend(n.getHTML());
-		env.msgs[n.id]=n;
-		//a finir
+		env.msgs[n.Id]=n;
+		if(n.Id>env.maxId){
+			env.maxId=n.Id;
+		}
+		if((env.minId<0 || (n.id<env.minId))){
+			env.minId=n.Id;
+		}
 	}
 
+}
+
+function newMessageReponse(rep){
+	var rep0=JSON.parse(rep);
+	if(rep0.error==undefined){
+		refreshMessages();
+	}
 
 }
 
