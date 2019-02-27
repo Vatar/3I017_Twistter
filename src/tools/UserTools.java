@@ -95,7 +95,7 @@ public class UserTools {
 	
 	
 	public static String insertSession(int id_user,boolean root){
-		String newkey=UUID.randomUUID().toString().replace('-',' ');
+		String newkey=UUID.randomUUID().toString().replace('-',' ').replaceAll("\\s+","");
 		try {
 			Connection c=tools.ConnectionTools.getMySQLConnection();
 			Statement st=c.createStatement();

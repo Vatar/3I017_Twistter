@@ -53,6 +53,8 @@ public class MessageTools {
 		}
 		
 		if(array.size()==0) {return new JSONArray();}
+		
+		
 		query.append("user_id",new Document("$in",array));
 		
 	
