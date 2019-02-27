@@ -1,38 +1,39 @@
 package tools;
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
+import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 
 public class MessageTools {
 
 	public static void addMessage(int userId, String content) throws UnknownHostException{
 		String date=new java.util.GregorianCalendar().getTime().toString();
-		DBCollection message=Database.getMongoCollection("message");
-		BasicDBObject dbo=new BasicDBObject();
-		dbo.put("user_id",userId);
-		dbo.put("content",content);
-		dbo.put("date",date);
-		message.insert(dbo);
+		MongoCollection<Document> message=Database.getMongoCollection("message");
+		Document query = new Document();
+		query.append("user_id", userId);
+		query.append("content",content);
+		query.append("date", date);
+		message.insertOne(query);
 	}
 	
 	
 	public static JSONArray getMessageByUser(int userId) throws UnknownHostException, JSONException{
 	
-		DBCollection message=Database.getMongoCollection("message");
-		BasicDBObject query=new BasicDBObject("user_id",userId);
-		DBCursor msg=message.find(query);
+		MongoCollection<Document> message=Database.getMongoCollection("message");
+		Document query=new Document("user_id",userId);
+		MongoCursor<Document> msg=message.find(query).iterator();
 		JSONArray userMessage=new JSONArray();
 		while(msg.hasNext()){
 			JSONObject json=new JSONObject();
-			DBObject document=msg.next();
+			Document document=msg.next();
 			json.put("content", document.get("content"));
 			json.put("id", document.get("id"));
 			userMessage.put(json);
@@ -42,14 +43,29 @@ public class MessageTools {
 	
 	
 	public static JSONArray getMessageByUsers(int [] userId) throws JSONException, UnknownHostException{
-		DBCollection message=Database.getMongoCollection("message");
-		BasicDBObject query=new BasicDBObject();
-		query.put("user_id",new BasicDBObject("$in",userId));
-		DBCursor msg=message.find(query);
+		MongoCollection<Document> collection=Database.getMongoCollection("message");
+		Document query=new Document(); 
+		
+		ArrayList<Integer> array=new ArrayList<Integer>();
+		
+		for(int i =0;i<userId.length;i++){
+			array.add(userId[i]);
+		}
+		
+		if(array.size()==0) {return new JSONArray();}
+		query.append("user_id",new Document("$in",array));
+		
+	
+		
+		FindIterable<Document> col= collection.find(query);
+		
+		if(col==null) {return new JSONArray();}
+		
+		MongoCursor<Document> msg= col.iterator();
 		JSONArray userMessage=new JSONArray();
 		while(msg.hasNext()){
 			JSONObject json=new JSONObject();
-			DBObject document=msg.next();
+			Document document=msg.next();
 			json.put("content", document.get("content"));
 			json.put("id", document.get("id"));
 			userMessage.put(json);
@@ -61,19 +77,21 @@ public class MessageTools {
 	
 	public static JSONArray getMessageFriend(int userId) throws UnknownHostException, JSONException{
 		int [] friendsid = FriendTools.getFriends(userId);
-		
+		if(friendsid.length==0) {
+			return new JSONArray();
+		}
 		return getMessageByUsers(friendsid);
 		
 	}
 
 
 	public static JSONArray getAllMessage() throws UnknownHostException, JSONException {
-		DBCollection message=Database.getMongoCollection("message");
-		DBCursor msg=message.find();
+		MongoCollection<Document> message=Database.getMongoCollection("message");
+		MongoCursor<Document> msg=message.find().iterator();
 		JSONArray userMessage=new JSONArray();
 		while(msg.hasNext()){
 			JSONObject json=new JSONObject();
-			DBObject document=msg.next();
+			Document document=msg.next();
 			json.put("content", document.get("content"));
 			json.put("id", document.get("id"));
 			userMessage.put(json);

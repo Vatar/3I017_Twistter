@@ -8,11 +8,15 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.bson.Document;
+
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
 import bd.DBStatic;
 
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.Mongo;
+
 
 public class Database {
 
@@ -31,18 +35,12 @@ public class Database {
 		return dataSource.getConnection();
 	}
 	
-	public static DBCollection getMongoCollection(String nom_collection) throws UnknownHostException{
-		/*MongoClient m;
-	
-		m = new MongoClient(DBStatic.mongo_url);
-		DB db=m.getDB(DBStatic.mongo_db);
-		return db.getCollection(nom_collection);
-		*/
+	public static MongoCollection<Document> getMongoCollection(String nom_collection) throws UnknownHostException{
+
+		com.mongodb.client.MongoClient mongo = MongoClients.create();
+		MongoDatabase mDB= mongo.getDatabase(DBStatic.mongo_db);
 		
-		Mongo m=new Mongo(DBStatic.mongo_url);
-		DB db=m.getDB(DBStatic.mongo_db);
-		return db.getCollection(nom_collection);
+		return mDB.getCollection(nom_collection);
 	}
-	
-	
+
 }

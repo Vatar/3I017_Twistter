@@ -14,8 +14,15 @@ public class SQLTest {
 	public static void main(String[] args) {
 		try {
 			Connection c =tools.ConnectionTools.getMySQLConnection();
+			
+			
+			
 			Statement st=c.createStatement();
 
+			
+			
+			
+			
 			String prequery="CREATE TABLE user(id INTEGER PRIMARY KEY AUTO_INCREMENT,"
 					+ "login VARCHAR(255) UNIQUE,"
 					+ "pwd BLOB,"
@@ -73,9 +80,9 @@ public class SQLTest {
 				System.out.println("\n");
 				System.out.println(service.message.Search.search(json2.getString("key"), null, null).toString());
 				System.out.println("\n");
-				System.out.println(service.message.Search.search(json2.getString("key"), null, "true"));
+				System.out.println(service.message.Search.search(json2.getString("key"), "true", "1").toString());
 				
-				//Resultat attendu: tout message - message de bob - messages des ami de bob(=alice)
+				//Resultat attendu: tout message - message des amis de bob donc messages de alice - messages de alice
 				
 			} catch (JSONException e1) {
 				e1.printStackTrace();
@@ -89,8 +96,10 @@ public class SQLTest {
 			} catch(Exception e) {
 				System.out.println("System.in was closed; exiting");
 			}
-
+			
+			
 			String delet="DROP TABLE session";
+
 			st.executeUpdate(delet);
 			delet="DROP TABLE user";
 			st.executeUpdate(delet);

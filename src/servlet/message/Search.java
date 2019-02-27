@@ -23,7 +23,7 @@ public class Search extends HttpServlet{
 		
 		String key=req.getParameter("key");
 		String query=req.getParameter("query");
-		String friends=req.getParameter("friends");
+		String tableau_user=req.getParameter("tableau_user");
 		
 		
 		
@@ -35,7 +35,7 @@ public class Search extends HttpServlet{
 		
 		JSONArray reponse;
 		try {
-			reponse = service.message.Search.search(key, query, friends);
+			reponse = service.message.Search.search(key, query, tableau_user);
 			PrintWriter out = res.getWriter();
 			res.setContentType("text/plain");
 			out.println(reponse.toString());

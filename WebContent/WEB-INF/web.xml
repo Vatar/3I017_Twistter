@@ -2,6 +2,38 @@
 <web-app id="WebApp_ID" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
 
+	
+	<servlet>
+		<servlet-name>HelloWorld</servlet-name>
+		<servlet-class>servlet.HelloWorld</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Addition</servlet-name>
+		<servlet-class>servlet.Addition</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SimpleServlet</servlet-name>
+		<servlet-class>servlet.SimpleServlet</servlet-class>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>HelloWorld</servlet-name>
+		<url-pattern>/HelloWorld</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>Addition</servlet-name>
+		<url-pattern>/Addition</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>SimpleServlet</servlet-name>
+		<url-pattern>/SimpleServlet</url-pattern>
+	</servlet-mapping>
+	
+	
+	
 	<servlet>
 		<servlet-name>AddFriend</servlet-name>
 		<servlet-class>servlet.friend.AddFriend</servlet-class>
@@ -38,7 +70,8 @@
 	</servlet>
 
 
-
+	
+	
 	<servlet-mapping>
 		<servlet-name>RemoveFriend</servlet-name>
 		<url-pattern>/RemoveFriend</url-pattern>
@@ -69,6 +102,7 @@
 		<url-pattern>/Search</url-pattern>
 	</servlet-mapping>
 
+	
 	
 	
 

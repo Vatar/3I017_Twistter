@@ -55,8 +55,8 @@ public class Addition extends HttpServlet {
 		}
 		catch(Exception e){
 			response.setContentType( " text / plain " );
-			/*PrintWriter out = response.getWriter ();
-			out.println("");*/
+			PrintWriter out = response.getWriter ();
+			out.println(e.toString());
 		}
 	
  }

@@ -11,27 +11,31 @@ public class Search {
 	
 	
 
-	public static JSONArray search(String key, String query, String friends) throws JSONException, UnknownHostException{
+	public static JSONArray search(String key, String query, String tableau_user) throws JSONException, UnknownHostException{
 
 		try {
 
-			if(key==null){
+			if(tableau_user==null && query==null&&key==null) {
 				return MessageTools.getAllMessage();
 			}
 			
-			if(friends==null){
-				return MessageTools.getMessageByUser(UserTools.getIDUserByKey(key));
+			if(tableau_user==null && query==null){
+				return MessageTools.getMessageFriend(UserTools.getIDUserByKey(key));
 			}
 			
-			if(friends=="true"){
-				return MessageTools.getMessageFriend(UserTools.getIDUserByKey(key));
+			if(tableau_user!=null){
+				int[] users= new int[tableau_user.length()];
+				for(int i=0;i<tableau_user.length();i++){
+					users[i]=Integer.parseInt(tableau_user.charAt(i)+"");
+				}
+				
+				return MessageTools.getMessageByUsers(users);
 			}
 			
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		
 		return MessageTools.getAllMessage();
 
 	}

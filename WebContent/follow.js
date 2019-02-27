@@ -1,7 +1,14 @@
 
-function follow(){
+function follow(id_friend){
     if(!noConnection){ 
-        //appel au serveur
+        $.ajax({
+            type:"POST",
+            url:"AddFriend",
+            data:"key="+env.key+"&id_friend="+id_friend,
+            datatype:"text",
+            success:function(rep){responseFollow(rep)},
+            error:function(rep){func_error(rep.error)}
+        })
     }
 
     else{
@@ -22,9 +29,16 @@ function responseFollow(rep){
 
 }
 
-function stopFollow(rep){
+function stopFollow(id_friend){
     if(!noConnection){
-        //appel au serveur
+        $.ajax({
+            type:"POST",
+            url:"RemoveFriend",
+            data:"key="+env.key+"&id_friend="+id_friend,
+            datatype:"text",
+            success:function(rep){responseStopFollow(rep)},
+            error:function(rep){func_error(rep.error)}
+        })
     }
     else{
         responseStopFellow({});
